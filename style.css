@@ -52,12 +52,8 @@
     left: 10px;
     padding: 0.25rem 5rem 0.25rem 1rem;
     background-color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .name {
     bottom: 60px;
   }
-  
   
   form {
     margin: 1rem 0;
@@ -103,14 +99,11 @@
 
   #comment-display {
     font-size: 1.5em;
+    width: 800px
   }
 
   #modal p {
     margin-bottom: 0;
-  }
-  
-  .activated-heart {
-    color: red;
   }
   
   .hidden {

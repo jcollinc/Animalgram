@@ -20,7 +20,7 @@ function renderAnimal(animal) {
 
 function animalSelector(animal) {
     mainImage.src = animal.image_link
-    if (animal.latin_name != undefined) {description.innerText = `${animal.name}, (latin: ${animal.latin_name}), lives in the ${animal.habitat}.`}
+    if (animal.latin_name != undefined) {description.innerText = `${animal.name}, (latin: ${animal.latin_name}), is a ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
     else {description.innerText = animal.description}
     heart.style.color = 'black'
     heart.style.fontWeight = 'normal'
@@ -49,8 +49,10 @@ function submitHandler(e) {
     animal.image_link = e.target.image.value
     animal.description = e.target.description.value
 
-    renderAnimal(animal)
-    animalSelector(animal)
+    if (e.target.image.value != "") {
+    renderAnimal(animal);
+    animalSelector(animal);
+    }
 
     form.reset()
 }
