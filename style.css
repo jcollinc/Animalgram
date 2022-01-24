@@ -7,7 +7,7 @@
   body {
     padding: 1rem;
     text-align: center;
-    background-color: #fafafa;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,4 +109,23 @@
   .hidden {
     visibility: hidden;
   }
+
+  #animal-menu {
+    display: grid;
+    grid-template-rows: 300px 300px 300px 300px;
+    grid-template-columns: 300px 300px 300px 300px 300px;
+}
+
+.box {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  height: 40%;
+  width: 100%;
+  padding: 5px;
+  object-fit: cover;
+}
   

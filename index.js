@@ -4,7 +4,14 @@ const description = document.getElementById('comment-display')
 const heart = document.getElementById('heart')
 const form = document.getElementById('new-animal')
 
-fetch('https://zoo-animal-api.herokuapp.com/animals/rand/5')
+fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
+    .then (r => r.json())
+    .then (animalObject => {
+        console.log(animalObject)
+        animalObject.forEach(animal => renderAnimal(animal))
+    });
+
+fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
     .then (r => r.json())
     .then (animalObject => {
         console.log(animalObject)
@@ -15,6 +22,7 @@ function renderAnimal(animal) {
     const newImg = document.createElement('img');
     newImg.addEventListener('click', () => animalSelector(animal))
     newImg.src = animal.image_link
+    newImg.className = 'box'
     allAnimalImages.appendChild(newImg)
 }
 
