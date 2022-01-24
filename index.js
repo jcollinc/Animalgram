@@ -20,7 +20,10 @@ function renderAnimal(animal) {
 
 function animalSelector(animal) {
     mainImage.src = animal.image_link
-    description.innerText = `${animal.name}, (latin: ${animal.latin_name}), lives in the ${animal.habitat}.`
+    if (animal.latin_name != undefined) {description.innerText = `${animal.name}, (latin: ${animal.latin_name}), lives in the ${animal.habitat}.`}
+    else {description.innerText = animal.description}
+    heart.style.color = 'black'
+    heart.style.fontWeight = 'normal'
 }
 
 heart.addEventListener('click', likeHandler)
