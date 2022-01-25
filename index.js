@@ -36,12 +36,12 @@ heart.addEventListener('click', likeHandler)
 
 function likeHandler (e) {
     
-    if (e.target.style.color === 'red') {
+    if (e.target.innerText === '❤') {
+        e.target.innerText = '♡'
         e.target.style.color = 'black'
-        e.target.style.fontWeight = 'normal'
     }
-    else {e.target.style.color = 'red';
-          e.target.style.fontWeight = 'bold'
+    else {e.target.innerText = '❤'
+          e.target.style.color = 'red'
     }
 } 
 

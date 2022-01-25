@@ -17,8 +17,9 @@
   header {
     padding: 0.5rem;
     width: 100%;
-    color: white;
-    background-color: black;
+    color: rgb(161, 14, 14);
+    background-color: rgb(255, 255, 255);
+    font-family: 'Brush Script MT';  
   }
   
   #animal-menu {
