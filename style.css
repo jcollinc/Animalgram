@@ -95,11 +95,15 @@
   }
 
   .like {
-    font-size: .000001em;
+    font-size: 30px
+  }
+
+  #heart {
+    font-size: 50px; 
   }
 
   .info {
-    font-size: .000001em;
+    display: none;
   }
 
   #comment-display {
