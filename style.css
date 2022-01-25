@@ -17,9 +17,9 @@
   header {
     padding: 0.5rem;
     width: 100%;
-    color: rgb(161, 14, 14);
+    color: rgb(82, 84, 223);
     background-color: rgb(255, 255, 255);
-    font-family: 'Brush Script MT';  
+    font-family: 'Lucida Handwriting';  
   }
   
   #animal-menu {
@@ -95,7 +95,11 @@
   }
 
   .like {
-    font-size: 3em;
+    font-size: .000001em;
+  }
+
+  .info {
+    font-size: .000001em;
   }
 
   #comment-display {

@@ -3,6 +3,7 @@ const mainImage = document.querySelector('#animal-detail img')
 const description = document.getElementById('comment-display')
 const heart = document.getElementById('heart')
 const form = document.getElementById('new-animal')
+const header = document.querySelector('header')
 
 fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
     .then (r => r.json())
@@ -25,11 +26,22 @@ function renderAnimal(animal) {
 }
 
 function animalSelector(animal) {
+    allAnimalImages.style.height = '.00001px';
     mainImage.src = animal.image_link
-    if (animal.latin_name != undefined) {description.innerText = `${animal.name}, (latin: ${animal.latin_name}), is a ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
-    else {description.innerText = animal.description}
+        if (animal.latin_name != undefined) {description.innerText = `${animal.name}, (latin: ${animal.latin_name}), is a ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
+        else {description.innerText = animal.description};
+    
     heart.style.color = 'black'
     heart.style.fontWeight = 'normal'
+    
+    const button = document.createElement('button')
+        button.innerText = 'back'
+        header.appendChild(button)
+        button.addEventListener('click', () => {
+            allAnimalImages.style.height = '100%'; button.remove();mainImage.src = ""; heart.innerText = '♡'; heart.style.color = 'black'
+            description.innerText = ''
+        })
+        
 }
 
 heart.addEventListener('click', likeHandler)
@@ -58,7 +70,6 @@ function submitHandler(e) {
 
     if (e.target.image.value != "") {
     renderAnimal(animal);
-    animalSelector(animal);
     }
 
     form.reset()
