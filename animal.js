@@ -7,12 +7,14 @@ const form = document.getElementById('new-animal')
 fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
     .then (r => r.json())
     .then (animalObject => {
+        console.log(animalObject)
         animalObject.forEach(animal => renderAnimal(animal))
     });
 
 fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
     .then (r => r.json())
     .then (animalObject => {
+        console.log(animalObject)
         animalObject.forEach(animal => renderAnimal(animal))
     });
 
@@ -41,8 +43,7 @@ function likeHandler (e) {
         e.target.style.fontWeight = 'normal'
     }
     else {e.target.style.color = 'red';
-          e.target.style.fontWeight = 'bold'
-    }
+          e.target.style.fontWeight = 'bold'}
 } 
 
 form.addEventListener('submit', submitHandler)
@@ -63,6 +64,3 @@ function submitHandler(e) {
 
     form.reset()
 }
-
-
-
