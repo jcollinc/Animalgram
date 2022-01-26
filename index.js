@@ -266,7 +266,7 @@ viewButton.addEventListener('click', () => {
         })
     
 })
-
+   
 
 //Append prototype (thanks Google!)
 
