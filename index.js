@@ -9,6 +9,10 @@ const header = document.querySelector('header')
 const info = document.querySelector('h3')
 const like = document.getElementById('like')
 const formBox = document.getElementById('form-box')
+const nameAnimal = document.getElementById('name-display')
+const tagName = document.getElementById('tagName')
+const tagDescription =document.getElementById('tagDescription')
+
 
 //Initial fetches
 fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
@@ -31,12 +35,19 @@ function defaultDisplay () {
     like.style.display = 'none';
     description.style.display = 'none';
     animalDetail.style.display = 'none';
+    nameAnimal.style.display = 'none'
     description.innerText = '';
     allAnimalImages.style.display = ''
     mainImage.src = "";
     heart.innerText = '♡'; 
     heart.style.color = 'black';
-    formButton.style.display = 'block'
+    formButton.style.display = 'block';
+    tagName.style.display = 'none'
+    tagDescription.style.display = 'none'
+
+
+    
+
 }
 
 //Creates image grid 
@@ -53,9 +64,13 @@ function renderAnimal(animal) {
 function animalSelector(animal) {
     
     mainImage.src = animal.image_link
-        if (animal.latin_name != undefined) {description.innerText = `${animal.name}, (latin: ${animal.latin_name}), is a ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
-        else {description.innerText = animal.description};
-    
+        if (animal.latin_name != undefined){
+        nameAnimal.innerText = `${animal.name}, (latin: ${animal.latin_name})` 
+        description.innerText = `A ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
+        else {description.innerText = animal.description, nameAnimal.innerText = animal.name
+                                        };
+        
+    nameAnimal.style.display = 'block'
     info.style.display = 'block';
     description.style.display = 'block';
     animalDetail.style.display = 'block'
@@ -64,6 +79,10 @@ function animalSelector(animal) {
     form.style.display = 'none'
     allAnimalImages.style.display = 'none';
     formButton.style.display = 'none';
+    tagName.style.display = 'inline-block'
+    tagDescription.style.display = 'inline-block'
+    
+
   
 //reverses this ^
     const button = document.createElement('button')
