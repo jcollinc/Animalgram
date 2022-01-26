@@ -90,30 +90,34 @@ function renderLikedAnimal(animal) {
 
 function animalSelector(animal) {
     
-    mainImage.src = animal.image_link
+   mainImage.src = animal.image_link
+
+        let a 
+        if(animal.animal_type[0] == 'A'){a = 'An'}
+        else{a = 'A'}
         if (animal.latin_name != undefined){
         nameAnimal.innerText = `${animal.name}, (latin: ${animal.latin_name})` 
-        description.innerText = `A ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
+        description.innerText = `${a} ${animal.animal_type.toLowerCase()} which subsists on ${animal.diet.toLowerCase()}. It can be found primarily in the ${animal.habitat.toLowerCase()}.`}
         else {description.innerText = animal.description, nameAnimal.innerText = animal.name};
         
-    nameAnimal.style.display = 'block'
-    info.style.display = 'block';
-    description.style.display = 'block';
-    animalDetail.style.display = 'block'
-    heart.style.display = 'inline-block'
-    like.style.display = 'block'
-    form.style.display = 'none'
-    allAnimalImages.style.display = 'none';
-    formButton.style.display = 'none';
-    viewButton.style.display = 'none';
-    tagName.style.display = 'inline-block';
-    tagDescription.style.display = 'inline-block';
+            nameAnimal.style.display = 'block'
+            info.style.display = 'block';
+            description.style.display = 'block';
+            animalDetail.style.display = 'block'
+            heart.style.display = 'inline-block'
+            like.style.display = 'block'
+            form.style.display = 'none'
+            allAnimalImages.style.display = 'none';
+            formButton.style.display = 'none';
+            viewButton.style.display = 'none';
+            tagName.style.display = 'inline-block';
+            tagDescription.style.display = 'inline-block';
     
 
-    //reverses this ^
+//reverses this ^
 
 
-        const button = document.createElement('button')
+    const button = document.createElement('button')
         button.title = 'back to main'
         button.className = 'button'
         button.id = 'backToMain'
