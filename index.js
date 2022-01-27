@@ -14,10 +14,11 @@ const nameAnimal = document.getElementById('name-display')
 const tagName = document.getElementById('tagName')
 const tagDescription =document.getElementById('tagDescription')
 const likedAnimals = document.getElementById('liked-animals')
+
+//Initial fetches, pushes fetched data into initialFeed array for later access
+
 const initialFeed = []
 
-//Initial fetches, pushes fetched data into array
-
 fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
     .then (r => r.json())
     .then (animalObject => {
@@ -30,7 +31,7 @@ fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
         animalObject.forEach(animal => {renderAnimal(animal); initialFeed.push(animal)})
     });
 
-//Appends images to "home page" 
+//Appends fetched images to "home page" 
 
 function renderAnimal(animal) {
     const newImg = document.createElement('img');
@@ -63,7 +64,7 @@ function defaultDisplay () {
     else{viewButton.style.display = ''};
 }
 
-//Creates description, shows "description page" elements, hides home page, adds 'back' button to reverse all this 
+//Shows "description page" elements, hides home page, creates back button to reverse all this 
 
 function animalSelector(animal) {
     
@@ -117,21 +118,19 @@ function animalSelector(animal) {
                 
 // Simulates like persistence
 
-    if (likedAnimalsArray.some(likedAnimal => likedAnimal.image_link === mainImage.src)){
-        heart.innerText = '❤'
-        heart.style.color = 'red'  
-    }
-    else{heart.innerText = '♡'
-         heart.style.color = 'black'}
+if (likedAnimalsArray.some(likedAnimal => likedAnimal.image_link === mainImage.src)){
+    heart.innerText = '❤'
+    heart.style.color = 'red'  
 }
-
-// Like/Unlike Manager
+else{heart.innerText = '♡'
+        heart.style.color = 'black'}
+}
 
 let likedAnimalsArray = []
 
-heart.addEventListener('click', likeHandler)
-
 // Toggles heart appearance on click
+
+heart.addEventListener('click', likeHandler)
 
 function likeHandler (e) {
     
@@ -143,13 +142,13 @@ function likeHandler (e) {
           e.target.style.color = 'red'
     }
 
-// On heart click: if animal has been liked, removes animal from liked array, otherwise adds it 
+// On heart click: if animal has been liked, removes animal from likedAnimalsArray, otherwise adds it 
 
     if (likedAnimalsArray.some(animal => animal.image_link === mainImage.src)) {removeFromLiked()} 
     else {addImageToLiked()}    
 } 
 
-// Executes addition/removal of liked/unliked animals to liked array
+// Executes addition/removal of animals to/from likedAnimalsArray based on liked status
 
 function addImageToLiked() {
 
@@ -158,7 +157,6 @@ function addImageToLiked() {
     likedAnimal.description = description.innerText;
     likedAnimal.name = nameAnimal.innerText;
     likedAnimalsArray.push(likedAnimal)
-console.log(likedAnimal)
 }
 
 function removeFromLiked() {
@@ -178,7 +176,7 @@ formButton.addEventListener('click', () => {
     formButton.style.display = 'none'
 })
 
-//Adds form functionality
+//Adds form functionality, pushes submitted animal into intialFeedArray
 
 form.addEventListener('submit', submitHandler)
 
@@ -203,7 +201,7 @@ function submitHandler(e) {
     form.reset()
 }
 
-//Adds 'view liked animals button' if liked animals exist, renders liked animals on click
+//Adds 'view liked animals button' if likedAnimalsArray isn't empty
 
 const viewButton = document.createElement('button')
     viewButton.className = 'button'
@@ -213,7 +211,7 @@ const viewButton = document.createElement('button')
     else {viewButton.innerText = 'View Liked Animals'}
     formBox.appendChild(viewButton);
 
-//Deletes all images, repopulates using liked images array to show liked animals
+//Deletes all initial images, renders likedAnimalsArray to display liked animals
 
 viewButton.addEventListener('click', () => {
     
@@ -227,7 +225,7 @@ viewButton.addEventListener('click', () => {
     viewButton.style.display = 'none'
     formButton.style.display = 'none'
 
-//Uses stored fetch data to repopulate home page
+//Deletes all liked animal images, renders initial fetch data (plus form submissions) from initialFeed array
     
     backButtonLiked.addEventListener('click', () => {
             
@@ -240,7 +238,7 @@ viewButton.addEventListener('click', () => {
     
 }) 
    
-//Renders liked animals (called by view liked animals button)
+//Renders liked animals (called by view liked animals button) 
 
 function renderLikedAnimal(animal) {
     const newImg = document.createElement('img');
@@ -253,7 +251,7 @@ function renderLikedAnimal(animal) {
     defaultDisplay();
 }
 
-//Append prototype (thanks Google!)
+//Append prototype to help with formatting correctly (thanks Google!)
 
 Element.prototype.appendBefore = function (element) {
     element.parentNode.insertBefore(this, element);
