@@ -35,6 +35,7 @@ fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
 function renderAnimal(animal) {
     const newImg = document.createElement('img');
     newImg.addEventListener('click', () => animalSelector(animal))
+    newImg.addEventListener('mouseover', () => newImg.style.cursor = 'pointer')
     newImg.src = animal.image_link;
     newImg.className = 'box';
     allAnimalImages.appendChild(newImg);
@@ -128,9 +129,6 @@ function animalSelector(animal) {
 
 let likedAnimalsArray = []
 
-// I don't think this needs to be here anymore but leaving it just in case 
-// likedAnimalsArray = likedAnimalsArray.filter(animal => animal.image_link != mainImage.src)
-
 heart.addEventListener('click', likeHandler)
 
 // Toggles heart appearance on click
@@ -158,12 +156,10 @@ function addImageToLiked() {
     const likedAnimal = {}
     likedAnimal.image_link = mainImage.src
     likedAnimalsArray.push(likedAnimal)
-    console.log(likedAnimalsArray)
 }
 
 function removeFromLiked() {
     likedAnimalsArray = likedAnimalsArray.filter(animal => animal.image_link != mainImage.src) 
-    console.log(likedAnimalsArray)
 }
 
 //Adds 'submit new animal' button which reveals form
@@ -187,10 +183,9 @@ function submitHandler(e) {
     e.preventDefault()
     
     const animal = {}
-
-    animal.name = e.target.name.value
-    animal.image_link = e.target.image.value
-    animal.description = e.target.description.value
+        animal.name = e.target.name.value
+        animal.image_link = e.target.image.value
+        animal.description = e.target.description.value
 
     if (e.target.image.value != "") {
         renderAnimal(animal);
@@ -203,7 +198,6 @@ function submitHandler(e) {
     }
 
     form.reset()
-    console.log(animal)
 }
 
 //Adds 'view liked animals button' if liked animals exist, renders liked animals on click
@@ -212,15 +206,13 @@ const viewButton = document.createElement('button')
     viewButton.className = 'button'
     viewButton.id = 'view-button'
     if(likedAnimalsArray.length === 0){viewButton.style.display = 'none'}
-    else if (likedAnimalsArray.length === 1) {
-        viewButton.innerText = 'View Liked Animal'
-    }
+    else if (likedAnimalsArray.length === 1) {viewButton.innerText = 'View Liked Animal'}
     else {viewButton.innerText = 'View Liked Animals'}
     formBox.appendChild(viewButton);
 
 //Deletes all images, repopulates using liked images array to show liked animals
 
-    viewButton.addEventListener('click', () => {
+viewButton.addEventListener('click', () => {
     
     allAnimalImages.innerHTML = ''
     likedAnimalsArray.forEach(animal => renderLikedAnimal(animal))
@@ -234,15 +226,14 @@ const viewButton = document.createElement('button')
 
 //Uses stored fetch data to repopulate home page
     
-        backButtonLiked.addEventListener('click', () => {
+    backButtonLiked.addEventListener('click', () => {
             
-            allAnimalImages.innerHTML = ''
-            initialFeed.forEach(initial => renderAnimal(initial))   
-            backButtonLiked.remove();
-            defaultDisplay();
-            formButton.style.display = '';
-            console.log(initialFeed)
-        })
+        allAnimalImages.innerHTML = ''
+        initialFeed.forEach(initial => renderAnimal(initial))   
+        backButtonLiked.remove();
+        defaultDisplay();
+        formButton.style.display = '';
+    })
     
 }) 
    
