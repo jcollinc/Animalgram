@@ -154,8 +154,11 @@ function likeHandler (e) {
 function addImageToLiked() {
 
     const likedAnimal = {}
-    likedAnimal.image_link = mainImage.src
+    likedAnimal.image_link = mainImage.src;
+    likedAnimal.description = description.innerText;
+    likedAnimal.name = nameAnimal.innerText;
     likedAnimalsArray.push(likedAnimal)
+console.log(likedAnimal)
 }
 
 function removeFromLiked() {
@@ -241,7 +244,8 @@ viewButton.addEventListener('click', () => {
 
 function renderLikedAnimal(animal) {
     const newImg = document.createElement('img');
-    newImg.addEventListener('click', (e) => {})
+    newImg.addEventListener('click', () => {animalSelector(animal); document.getElementById('backToMain').remove();})
+    newImg.addEventListener('mouseover', () => newImg.style.cursor = 'pointer')
     newImg.src = animal.image_link;
     newImg.style.cursor = 'auto'
     newImg.className = 'box';
