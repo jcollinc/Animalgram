@@ -1,6 +1,5 @@
 // HTML Elements
 
-
 const allAnimalImages = document.getElementById('animal-menu')
 const mainImage = document.querySelector('#animal-detail img')
 const animalDetail = document.getElementById('animal-detail')
@@ -36,6 +35,19 @@ fetch('https://zoo-animal-api.herokuapp.com/animals/rand/10')
 console.log(initialFeed)
 
 
+//Creates main grid 
+
+
+function renderAnimal(animal) {
+    const newImg = document.createElement('img');
+    newImg.addEventListener('click', () => animalSelector(animal))
+    newImg.src = animal.image_link;
+    newImg.className = 'box';
+    allAnimalImages.appendChild(newImg);
+    defaultDisplay();
+}
+
+
 //Shows "home page", hides "description page"
 
 
@@ -59,31 +71,6 @@ function defaultDisplay () {
 }
 
 
-//Creates default grid 
-
-
-function renderAnimal(animal) {
-    const newImg = document.createElement('img');
-    newImg.addEventListener('click', () => animalSelector(animal))
-    newImg.src = animal.image_link;
-    newImg.className = 'box';
-    allAnimalImages.appendChild(newImg);
-    defaultDisplay();
-}
-
-
-//Creates liked grid
-
-
-function renderLikedAnimal(animal) {
-    const newImg = document.createElement('img');
-    newImg.addEventListener('click', (e) => {})
-    newImg.src = animal.image_link;
-    newImg.className = 'box';
-    allAnimalImages.appendChild(newImg);
-    defaultDisplay();
-}
-
 
 //Creates/shows "description page", hides "home page", adds button to reverse this 
 
@@ -93,7 +80,8 @@ function animalSelector(animal) {
    mainImage.src = animal.image_link
 
         let a 
-        if(animal.animal_type[0] == 'A'){a = 'An'}
+        if(animal.animal_type === undefined) {}
+        else if(animal.animal_type[0] == 'A'){a = 'An'}
         else{a = 'A'}
         if (animal.latin_name != undefined){
         nameAnimal.innerText = `${animal.name}, (latin: ${animal.latin_name})` 
@@ -231,6 +219,7 @@ function submitHandler(e) {
     }
 
     form.reset()
+    console.log(animal)
 }
 
 
@@ -271,6 +260,20 @@ viewButton.addEventListener('click', () => {
     
 }) 
    
+
+//Creates liked grid
+
+
+function renderLikedAnimal(animal) {
+    const newImg = document.createElement('img');
+    newImg.addEventListener('click', (e) => {})
+    newImg.src = animal.image_link;
+    newImg.style.cursor = 'auto'
+    newImg.className = 'box';
+    allAnimalImages.appendChild(newImg);
+    defaultDisplay();
+}
+
 
 //Append prototype (thanks Google!)
 
